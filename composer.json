@@ -1,5 +1,5 @@
 {
-    "name": "MenaraSolutions/fluent-laravel",
+    "name": "menarasolutions/fluent-laravel",
     "type": "library",
     "description": "Laravel package for Fluent translations (application localisation)",
     "keywords": ["php","laravel","localization","translation"],
