@@ -1,6 +1,6 @@
 <?php
 
-namespace MenaraSolutions\FluentLaravel {
+namespace MenaraSolutions\FluentLaravel\Providers {
     use Illuminate\Support\ServiceProvider;
     use GuzzleHttp\Client;
     use Illuminate\Translation\FileLoader;
