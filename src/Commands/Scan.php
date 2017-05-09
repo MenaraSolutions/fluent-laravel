@@ -1,13 +1,12 @@
 <?php
 
-namespace MenaraSolutions\FluentLaravel\Translation;
+namespace MenaraSolutions\FluentLaravel\Commands;
 
-use App\Services\Translator;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 use Illuminate\Support\Collection;
+use MenaraSolutions\FluentLaravel\Translation\Translator;
 use Symfony\Component\Console\Output\OutputInterface;
-use Illuminate\Contracts\Translation\Translator as TranslatorContract;
 
 class Scan extends Command
 {

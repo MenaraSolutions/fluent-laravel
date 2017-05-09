@@ -2,6 +2,9 @@
 
 namespace MenaraSolutions\FluentLaravel {
     use Illuminate\Support\ServiceProvider;
+    use GuzzleHttp\Client;
+    use Illuminate\Translation\FileLoader;
+    use MenaraSolutions\FluentLaravel\Translation\Translator;
 
     class LaravelServiceProvider extends ServiceProvider
     {
