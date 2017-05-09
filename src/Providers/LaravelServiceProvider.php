@@ -4,6 +4,7 @@ namespace MenaraSolutions\FluentLaravel {
     use Illuminate\Support\ServiceProvider;
     use GuzzleHttp\Client;
     use Illuminate\Translation\FileLoader;
+    use MenaraSolutions\FluentLaravel\Commands\Scan;
     use MenaraSolutions\FluentLaravel\Translation\Translator;
 
     class LaravelServiceProvider extends ServiceProvider
@@ -15,6 +16,15 @@ namespace MenaraSolutions\FluentLaravel {
          */
         public function boot()
         {
+            $this->publishes([
+                __DIR__ . '/../config/fluent.php' => config_path('fluent.php')
+            ]);
+
+            if ($this->app->runningInConsole()) {
+                $this->commands([
+                    Scan::class
+                ]);
+            }
         }
 
         /**
