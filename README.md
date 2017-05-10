@@ -22,3 +22,12 @@ Use: ```__('Please wait, authorizing')```
 Drawbacks: if the same text needs different translations in different contexts, this doesn't work well.
 
 It's hard to say how much of content is translated becase there is no original text dictionary.
+
+## Localization flow of Fluent
+
+## Note
+
+This package **will not** alter any of your files. This package creates an extra folder in `resources/` - `lang-fluent`, all new languagae
+files will be stored here.
+
+You can move back to standard translation implementation at any time. Simply comment out our service provider in `config/app.php`.
