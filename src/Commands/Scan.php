@@ -59,8 +59,8 @@ class Scan extends Command
             if (is_dir($name)) continue;
             if (! preg_match('/\.php$/', $name)) continue;
 
-            $regex1 = '(?:trans|__|@lang)\(\s*\'((?:[^\']|\\\\.)*)\'\s*\)';
-            $regex2 = '(?:trans|__|@lang)\(\s*"((?:[^"]|\\\\.)*)"\s*\)';
+            $regex1 = '(?:trans|__|@lang)\(\s*\'((?:[^\']|\\\\.)*)\'\s*[\),]';
+            $regex2 = '(?:trans|__|@lang)\(\s*"((?:[^"]|\\\\.)*)"\s*[\),]';
             preg_match_all("/{$regex1}|{$regex2}/", file_get_contents($name), $matches);
             $matches = array_merge(array_filter($matches[1]), array_filter($matches[2]));
 
