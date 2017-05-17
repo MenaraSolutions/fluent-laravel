@@ -7,6 +7,8 @@ Laravel package for Fluent translations (application localisation)
 
 ## Localization flow of Laravel
 
+Laravel offers two options for localization: key-based texts and plain JSON texts.
+
 ### Key-based language files: {locale}/{group}.php (PHP array format)
 
 Use: ```__('auth.please_wait')```
@@ -21,9 +23,57 @@ Use: ```__('Please wait, authorizing')```
 
 Drawbacks: if the same text needs different translations in different contexts, this doesn't work well.
 
-It's hard to say how much of content is translated becase there is no original text dictionary.
+It's hard to say how much of content is translated because there is no original text dictionary.
 
 ## Localization flow of Fluent
+
+Fluent offers you to store and manage your translations in the "cloud" which makes it trivial to outsource translations
+to translation market places or colleagues. Even if you translate everything yourself, Fluent interface will be far
+more convenient for this task (eg. you will see clearly current status, get hints from MTs, find unused texts, etc).
+
+## Installation
+
+Use Composer to install this package:
+
+```bash
+$ composer require menarasolutions/fluent-laravel
+```
+
+Add our service provider to ```config/app.php```:
+
+```php
+ 'providers' => [
+ /// ...
+     MenaraSolutions\FluentLaravel\Providers\LaravelServiceProvider::class,
+ /// ...
+ ],
+```
+
+Create a config file (`config/fluent.php`):
+
+```bash
+$ php artisan vendor:publish
+```
+
+Add your Fluent API key and application ID in this config file and you are ready to run!
+
+## Updating language files
+
+Run the following command anytime during development or during your CI/CD pipeline:
+
+```bash
+$ php artisan fluent:scan -n -v
+```
+
+This will scan your controllers and templates for new texts that need to be translated, upload them to Fluent,
+download any new translations back from Fluent.
+
+If it's your first run and you want to export existing translations from `lang` to Fluent, run the same command
+in interactive mode and answer yes:
+
+```bash
+$ php artisan fluent:scan -v
+```
 
 ## Note
 

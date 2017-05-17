@@ -63,7 +63,7 @@ class Scan extends Command
 
             if (! empty($matches[1])) {
                 $this->output->writeln('- ' . $name . ': ' . count($matches[1]), OutputInterface::VERBOSITY_VERBOSE);
-                $output = array_merge($output, $matches[1]);
+                $output = array_merge($output, collect($matches[1])->map(function($text) { return stripslashes($text); })->toArray());
             }
 
             unset($matches);
