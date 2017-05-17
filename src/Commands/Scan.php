@@ -59,11 +59,14 @@ class Scan extends Command
             if (is_dir($name)) continue;
             if (! preg_match('/\.php$/', $name)) continue;
 
-            preg_match_all('/(?:trans|__)\(\s*[\'"]{1}((?:[^\']|\\\\.)*)[\'"]{1}\s*\)/', file_get_contents($name), $matches);
+            $regex1 = '(?:trans|__|@lang)\(\s*\'((?:[^\']|\\\\.)*)\'\s*\)';
+            $regex2 = '(?:trans|__|@lang)\(\s*"((?:[^"]|\\\\.)*)"\s*\)';
+            preg_match_all("/{$regex1}|{$regex2}/", file_get_contents($name), $matches);
+            $matches = array_merge(array_filter($matches[1]), array_filter($matches[2]));
 
-            if (! empty($matches[1])) {
-                $this->output->writeln('- ' . $name . ': ' . count($matches[1]), OutputInterface::VERBOSITY_VERBOSE);
-                $output = array_merge($output, collect($matches[1])->map(function($text) { return stripslashes($text); })->toArray());
+            if (! empty($matches)) {
+                $this->output->writeln('- ' . $name . ': ' . count($matches), OutputInterface::VERBOSITY_VERBOSE);
+                $output = array_merge($output, collect($matches)->map(function($text) { return stripslashes($text); })->toArray());
             }
 
             unset($matches);

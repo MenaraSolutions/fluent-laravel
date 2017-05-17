@@ -30,21 +30,34 @@ class Translator extends \Illuminate\Translation\Translator implements Translato
     }
 
     /**
-     * Get the translation for a given key.
+     * Get the translation for the given key.
      *
      * @param  string  $key
      * @param  array   $replace
-     * @param  string  $locale
+     * @param  string|null  $locale
+     * @param  bool  $fallback
      * @return string|array|null
      */
-    public function trans($key, array $replace = [], $locale = null)
+    public function get($key, array $replace = [], $locale = null, $fallback = true)
     {
-        $output = $this->get($key, $replace, $locale);
+        list($namespace, $group, $item) = $this->parseKey($key);
 
-        if ($output == $key) return $this->getOriginalTranslator()->trans($key, $replace, $locale);
-        if (is_string($output)) return $output;
+        $locales = $fallback ? $this->localeArray($locale)
+            : [$locale ?: $this->locale];
 
-        return $output;
+        foreach ($locales as $locale) {
+            if (! is_null($line = $this->getLine(
+                $namespace, $group, $locale, $item, $replace
+            ))) {
+                break;
+            }
+        }
+
+        if (isset($line)) {
+            return $line;
+        }
+
+        return $this->getOriginalTranslator()->get($key, $replace, $locale, $fallback);
     }
 
     /**
