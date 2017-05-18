@@ -4,6 +4,7 @@ namespace MenaraSolutions\FluentLaravel\Providers {
     use Illuminate\Support\ServiceProvider;
     use GuzzleHttp\Client;
     use Illuminate\Translation\FileLoader;
+    use MenaraSolutions\FluentLaravel\Commands\Fetch;
     use MenaraSolutions\FluentLaravel\Commands\Scan;
     use MenaraSolutions\FluentLaravel\Translation\Translator;
 
@@ -22,7 +23,8 @@ namespace MenaraSolutions\FluentLaravel\Providers {
 
             if ($this->app->runningInConsole()) {
                 $this->commands([
-                    Scan::class
+                    Scan::class,
+                    Fetch::class,
                 ]);
             }
         }
