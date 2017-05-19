@@ -1,7 +1,10 @@
 # fluent-laravel
 [![Build Status](https://travis-ci.org/MenaraSolutions/fluent-laravel.svg?branch=master)](https://travis-ci.org/MenaraSolutions/fluent-laravel)
+[![Latest Stable Version](https://poser.pugx.org/menarasolutions/fluent-laravel/v/stable)](https://packagist.org/packages/menarasolutions/fluent-laravel)
+[![Total Downloads](https://poser.pugx.org/menarasolutions/fluent-laravel/downloads)](https://packagist.org/packages/menarasolutions/fluent-laravel)
 [![Code Climate](https://codeclimate.com/github/MenaraSolutions/fluent-laravel/badges/gpa.svg)](https://codeclimate.com/github/MenaraSolutions/fluent-laravel)
 [![Test Coverage](https://codeclimate.com/github/MenaraSolutions/fluent-laravel/badges/coverage.svg)](https://codeclimate.com/github/MenaraSolutions/fluent-laravel/coverage)
+[![License](https://poser.pugx.org/menarasolutions/fluent-laravel/license)](https://packagist.org/packages/menarasolutions/fluent-laravel)
 
 Laravel package for Fluent translations (application localisation)
 
