@@ -13,9 +13,9 @@ class ScanTest extends PHPUnit_Framework_TestCase {
 
         $texts = $command->scanFolder(realpath(dirname(__FILE__)) . '/artefacts');
 
-        $this->assertTrue($texts->contains('Fluent is operated by Menara Solutions Pty Ltd, a Melbourne-based Australian company.'));
+        $this->assertTrue($texts->contains('Fluent is operated by Menara Solutions Pty Ltd, a Melbourne-based Australian company. It\'s great.'));
         $this->assertTrue($texts->contains('The company'));
-        $this->assertTrue($texts->contains('We run on caffeine and cool ideas.'));
+        $this->assertTrue($texts->contains('We run on caffeine and cool ideas. We like "good" music. I can use \'single\' quotes here.'));
         $this->assertTrue($texts->contains('Texts and translations'));
         $this->assertTrue($texts->contains('texts.apples'));
     }
