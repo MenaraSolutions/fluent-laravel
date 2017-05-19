@@ -46,6 +46,14 @@ class Fetch extends Command
     }
 
     /**
+     * @param OutputInterface $output
+     */
+    public function setOutput(OutputInterface $output)
+    {
+        $this->output = $output;
+    }
+
+    /**
      * @return Collection
      * @throws \Exception
      */

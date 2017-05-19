@@ -46,10 +46,18 @@ class Scan extends Command
     }
 
     /**
+     * @param OutputInterface $output
+     */
+    public function setOutput(OutputInterface $output)
+    {
+        $this->output = $output;
+    }
+
+    /**
      * @param string $path
      * @return Collection
      */
-    protected function scanFolder($path)
+    public function scanFolder($path)
     {
         $this->output->writeln("Scanning {$path}", OutputInterface::VERBOSITY_VERBOSE);
         $objects = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path), \RecursiveIteratorIterator::SELF_FIRST);
@@ -59,8 +67,8 @@ class Scan extends Command
             if (is_dir($name)) continue;
             if (! preg_match('/\.php$/', $name)) continue;
 
-            $regex1 = '(?:trans|__|@lang)\(\s*\'((?:[^\']|\\\\.)*)\'\s*[\),]';
-            $regex2 = '(?:trans|__|@lang)\(\s*"((?:[^"]|\\\\.)*)"\s*[\),]';
+            $regex1 = '(?:trans|trans_choice|__|@lang)\(\s*\'((?:[^\']|\\\\.)*)\'\s*[\),]';
+            $regex2 = '(?:trans|trans_choice|__|@lang)\(\s*"((?:[^"]|\\\\.)*)"\s*[\),]';
             preg_match_all("/{$regex1}|{$regex2}/", file_get_contents($name), $matches);
             $matches = array_merge(array_filter($matches[1]), array_filter($matches[2]));
 
