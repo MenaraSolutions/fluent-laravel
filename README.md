@@ -57,23 +57,27 @@ $ php artisan vendor:publish
 
 Add your Fluent API key and application ID in this config file and you are ready to run!
 
+## Uploading original texts
+
+You need to submit your original, untranslated texts to Fluent from time to time so that you or your translators
+can start working on translations. To do that run `scan` command:
+
+```bash
+$ php artisan fluent:scan -v
+```
+
+This command will scan your `src` and `resources/views` folders and look for all invocations of `__()`, `trans()` and `@lang()`.
+Moreover, you will be prompted whether you want to upload your existing translations from `resources/lang` folder to Fluent.
+
 ## Updating language files
 
 Run the following command anytime during development or during your CI/CD pipeline:
 
 ```bash
-$ php artisan fluent:scan -n -v
+$ php artisan fluent:fetch
 ```
 
-This will scan your controllers and templates for new texts that need to be translated, upload them to Fluent,
-download any new translations back from Fluent.
-
-If it's your first run and you want to export existing translations from `lang` to Fluent, run the same command
-in interactive mode and answer yes:
-
-```bash
-$ php artisan fluent:scan -v
-```
+This command will look for any new translations on Fluent and download them to `resources/lang-fluent` folder.
 
 ## Note
 
